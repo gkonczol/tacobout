@@ -1,8 +1,6 @@
 describe Taco do
-
-  before do
-    @taco = Taco.new
-  end
+  let(:shell) { Shell.new(:corn) }
+  let(:taco) { Taco.new(shell) }
 
   it 'belongs to a location' do
 
@@ -21,6 +19,10 @@ describe Taco do
     context 'cheesy chicken taco' do
       let(:cheesy_chicken_taco) { @taco.stuff(cheese, chicken, salsa) }
 
+      it 'has the correct ingredients' do
+
+      end
+
       it 'is not empty' do
 
       end
@@ -30,7 +32,9 @@ describe Taco do
       end
     end
 
-    context 'cheese taco' do
+    context 'cheesy taco' do
+      let(:cheesy_taco) { @taco.stuff(cheese, salsa) }
+
       it 'is vegetarian' do
 
       end
