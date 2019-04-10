@@ -1,6 +1,6 @@
 describe Taco do
   let(:shell) { Shell.new(:corn) }
-  let(:taco) { Taco.new(shell) }
+  subject(:taco) { Taco.new(shell) }
 
   it 'belongs to a location' do
 
@@ -17,7 +17,7 @@ describe Taco do
   context 'with ingredients' do
 
     context 'cheesy chicken taco' do
-      let(:cheesy_chicken_taco) { @taco.stuff(cheese, chicken, salsa) }
+      subject(:cheesy_chicken_taco) { @taco.stuff(cheese, chicken, salsa) }
 
       it 'has the correct ingredients' do
 
@@ -33,7 +33,7 @@ describe Taco do
     end
 
     context 'cheesy taco' do
-      let(:cheesy_taco) { @taco.stuff(cheese, salsa) }
+      subject(:cheesy_taco) { @taco.stuff(cheese, salsa) }
 
       it 'is vegetarian' do
 
