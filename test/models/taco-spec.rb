@@ -3,42 +3,52 @@
 describe Taco do
   let(:shop) { Shop.new('Magic Tacos', '123 Taco Street, Tacoland, OR, 97701') }
   let(:shell) { Shell.new(:corn, soft: false) }
-  subject(:taco) { Taco.new(shell: shell, shop: shop) }
 
-  it 'has a corn shell' do
-    expect(taco.shell.type).to eq(:corn)
-  end
+  context 'empty taco' do
+    subject(:taco) { Taco.new(shell: shell, shop: shop) }
 
-  it 'has a soft shell' do
-    expect(taco.shell.soft).to eq(false)
+    it 'has a corn shell' do
+      expect(subject.shell.type).to eq(:corn)
+    end
+
+    it 'has a soft shell' do
+      expect(subject.shell.soft).to eq(false)
+    end
+
+    it 'has no ingredients' do
+      expect(subject.ingredients).to be_empty
+    end
   end
 
   context 'with ingredients' do
+    let(:cheese) { Ingredient.new('cheese') }
+    let(:chicken) { Ingredient.new('chicken') }
+    let(:medium_salsa) { Ingredient.new('salsa', spicy: 5) }
+
     context 'cheesy chicken taco' do
-      let(:cheese) { Ingredient.new('cheese') }
-      let(:chicken) { Ingredient.new('chicken') }
-      let(:medium_salsa) { Ingredient.new('salsa', spicy: 5) }
-      subject(:cheesy_chicken_taco) { taco.stuff(cheese, chicken, medium_salsa) }
+      let(:ingredients) { %i[cheese chicken medium_salsa] }
+      subject(:cheesy_chicken_taco) { Taco.new(shell: shell, shop: shop, ingredients: ingredients) }
 
       it 'has the correct ingredients' do
-        expect(taco.ingredients).to contain_exactly(cheese, chicken, medium_salsa)
+        expect(subject.ingredients).to contain_exactly(cheese, chicken, medium_salsa)
       end
 
       it 'is not empty' do
-        expect(taco.ingredients).not_to be_empty
+        expect(subject.ingredients).not_to be_empty
       end
 
       it 'is not vegetarian' do
-        expect(taco.vegetarian).to eq(false)
+        expect(subject.vegetarian).to eq(false)
       end
 
       it 'has a spicy level' do
-        expect(taco.spicy_level).to eq(5)
+        expect(subject.spicy_level).to eq(5)
       end
     end
 
     context 'cheesy taco' do
-      subject(:cheesy_taco) { taco.stuff(cheese, salsa) }
+      let(:ingredients) { %i[cheese medium_salsa] }
+      subject(:cheesy_taco) { Taco.new(shell: shell, shop: shop, ingredients: ingredients) }
 
       it 'is vegetarian' do
         expect(taco.vegetarian).to eq(true)
