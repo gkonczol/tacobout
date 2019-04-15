@@ -18,8 +18,10 @@ I would highly reccomend you use a Ruby environment manager like [rvm](https://r
 
 After you have ruby installed you will also need bundler. You can run the following commands to install the project dependencies.
 
-- `gem install bundler`
-- `bundle`
+```shell
+gem install bundler
+bundle
+```
 
 ## Running Tests
 
