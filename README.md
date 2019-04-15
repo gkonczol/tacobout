@@ -14,6 +14,16 @@ You will need Ruby for this project. You can determine the current project versi
 
 I would highly reccomend you use a Ruby environment manager like [rvm](https://rvm.io/rvm/install).
 
+```shell
+rvm use SPECIFIED_RUBY_VERSION_HERE
+```
+
+If the speicified version is not yet installed you can set it up with:
+
+```shell
+rvm install SPECIFIED_RUBY_VERSION_HERE
+```
+
 ## Setup
 
 After you have ruby installed you will also need bundler. You can run the following commands to install the project dependencies.
