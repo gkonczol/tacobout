@@ -53,7 +53,7 @@ If you would like to contribute to this project you will need to:
 4. Make sure your tests pass!
 5. Create a pull request against the `dev` branch against the main repository.
 6. Wait for the code monkeys to groom through your 1337 H4X.
-7. Profit. Find a taco & have a beer 🍻
+7. Profit. Find tacos & have a beer 🍻
 
 ---
 
