@@ -1,6 +1,6 @@
-# frozen_string_literal: true
+require 'rails_helper'
 
-describe Taco do
+RSpec.describe Taco, type: :model do
   let(:shop) { Shop.new('Magic Tacos', '123 Taco Street, Tacoland, OR, 97701') }
   let(:shell) { Shell.new(:corn, soft: false) }
 
