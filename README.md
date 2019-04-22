@@ -41,6 +41,12 @@ Simply run `rspec` sit back think about relaxing, then stop, because these are l
 rspec
 ```
 
+If you would like to have a watcher rerunning your tests then run:
+
+```shell
+guard
+```
+
 ## Running the Server
 
 ```shell
