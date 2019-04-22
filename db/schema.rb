@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_22_185609) do
+ActiveRecord::Schema.define(version: 2019_04_22_191105) do
 
   create_table "shells", force: :cascade do |t|
-    t.integer "shell_type"
+    t.integer "type"
     t.boolean "soft"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
