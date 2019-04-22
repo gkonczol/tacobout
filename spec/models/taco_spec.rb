@@ -1,20 +1,42 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Taco, type: :model do
   # let(:shop) { Shop.new('Magic Tacos', '123 Taco Street, Tacoland, OR, 97701') }
   # let(:shell) { Shell.new(:corn, soft: false) }
-  let(:shop) { {
-    name: 'Magic Tacos',
-    address: '123 Taco Street, Tacoland, OR, 97701'
-  } }
-  let(:shell) { {
-    type: :corn,
-    soft: false
-  } }
-
+  let(:shop) do
+    {
+      name: 'Magic Tacos',
+      address: '123 Taco Street, Tacoland, OR, 97701'
+    }
+  end
+  let(:shell) do
+    {
+      type: :corn,
+      soft: false
+    }
+  end
 
   context 'empty taco' do
-    subject(:taco) { Taco.new(shell: shell, shop: shop) }
+    let(:taco_name) { 'Useless Taco' }
+    let(:taco_description) { 'empty like my soul' }
+    subject(:taco) do
+      Taco.new(
+        name: taco_name,
+        description: taco_description,
+        shell: shell,
+        shop: shop
+      )
+    end
+
+    it 'has a name' do
+      expect(subject.name).to eq(taco_name)
+    end
+
+    it 'has a description' do
+      expect(subject.description).to eq(taco_description)
+    end
 
     it 'has a shell' do
       expect(subject.shell).not_to be_nil
