@@ -6,16 +6,16 @@ RSpec.describe Taco, type: :model do
   # let(:shop) { Shop.new('Magic Tacos', '123 Taco Street, Tacoland, OR, 97701') }
   # let(:shell) { Shell.new(:corn, soft: false) }
   let(:shop) do
-    {
+    Shop.new(
       name: 'Magic Tacos',
       address: '123 Taco Street, Tacoland, OR, 97701'
-    }
+    )
   end
   let(:shell) do
-    {
-      type: :corn,
+    Shell.new(
+      base: 1,
       soft: false
-    }
+    )
   end
 
   context 'empty taco' do

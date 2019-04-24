@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class Taco < ApplicationRecord
-  has_one :shell
-  has_one :shop
+  belongs_to :shell
+  belongs_to :shop
 end
