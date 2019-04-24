@@ -6,14 +6,14 @@ RSpec.describe Taco, type: :model do
   # let(:shop) { Shop.new('Magic Tacos', '123 Taco Street, Tacoland, OR, 97701') }
   # let(:shell) { Shell.new(:corn, soft: false) }
   let(:shop) do
-    Shop.new(
+    Shop.create(
       name: 'Magic Tacos',
       address: '123 Taco Street, Tacoland, OR, 97701'
     )
   end
   let(:shell) do
-    Shell.new(
-      base: 1,
+    Shell.create(
+      primary_ingredient: 0,
       soft: false
     )
   end
@@ -22,7 +22,7 @@ RSpec.describe Taco, type: :model do
     let(:taco_name) { 'Useless Taco' }
     let(:taco_description) { 'empty like my soul' }
     subject(:taco) do
-      Taco.new(
+      Taco.create(
         name: taco_name,
         description: taco_description,
         shell: shell,
@@ -47,7 +47,7 @@ RSpec.describe Taco, type: :model do
     end
 
     it 'has a corn shell' do
-      expect(subject.shell[:type]).to eq(:corn)
+      expect(subject.shell.primary_ingredient).to eq('corn')
     end
 
     it 'has a soft shell' do
