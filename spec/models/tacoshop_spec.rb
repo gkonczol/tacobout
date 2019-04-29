@@ -1,35 +1,30 @@
-require_relative '../../app/models/tacoshop'
+require 'rails_helper'
 
-describe TacoShop do
-  before do
-    is_truck = false
-    location = '1234 st. dr. ln.'
-    rating = 'None'
-    @tacoshop = TacoShop.new(is_truck, location)
+RSpec.describe TacoShop, type: :model do
+  context 'New tacoshop with no tacos' do
+    subject do
+      TacoShop.create(Rating.new, {
+        location: '1234 boye st.',
+        type: 'truck'
+      })
+    end
+
+    it 'has no tacos' do
+      expect(subject.tacos).to eq(nil)
+    end
+
+    it 'declares itself as a truck' do
+      expect(subject.type).to eq('truck')
+    end
+
+    it 'can add a new taco' do
+      subject.add_taco(Taco.create(Rating.new), 'maximum ultra-beef')
+      expect(subject.tacos.length).to eq(1)
+      expect(subject.tacos[0].name).to be('maximum ultra-beef')
+    end
   end
 
-  it 'can instantiate' do
-    @tacoshop.nil?
-  end
+  context 'Old tacoshop with lots of tacos' do
 
-  it 'has tacos' do
-    @tacoshop.get_tacos.nil?
-  end
-
-  it 'has a location' do
-    @tacoshop.get_location.nil?
-  end
-
-  it 'is a truck or not' do
-    @tacoshop.is_truck.nil?
-  end
-
-  it 'has a rating' do
-    @tacoshop.rating.nil?
-  end
-
-  it 'can update rating' do
-    @tacoshop.rate_up(5)
-    @tacoshop.rating == 5
   end
 end
