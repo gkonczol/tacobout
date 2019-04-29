@@ -30,7 +30,7 @@ RSpec.describe Rating, type: :model do
     subject do
       cheesy = Taco.new(Rating.new(3.5))
       meaty = Taco.new(Rating.new(4.5))
-      TacoShop.create([cheesy, meaty])
+      TacoShop.create({cheesy: cheesy, meaty: meaty})
     end
     
     it 'instantiates when given tacos with ratings' do
@@ -42,7 +42,7 @@ RSpec.describe Rating, type: :model do
     end
     
     it 'assigns same rating as taco if shop has only one taco' do
-      subject.remove(:meaty)
+      subject.remove_taco(:meaty)
       expect(subject.rating).to eq(3.5)
     end
   end
