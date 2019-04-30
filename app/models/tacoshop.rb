@@ -1,6 +1,7 @@
 class TacoShop
 
   attr_accessor :is_truck, :location
+  #Tacoshop type as enum? think abboudit
 
   TACOS = {
     beef_taco: 'nice beef taco with beans',
