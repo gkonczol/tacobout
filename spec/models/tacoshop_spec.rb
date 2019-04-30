@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe TacoShop, type: :model do
   context 'New tacoshop with no tacos' do
     subject do
-      TacoShop.create(Rating.new, {
-        location: '1234 boye st.',
+      TacoShop.create({
+        location: '1234 coolio st.',
         type: 'truck'
       })
     end
@@ -24,7 +24,34 @@ RSpec.describe TacoShop, type: :model do
     end
   end
 
-  context 'Old tacoshop with lots of tacos' do
+  context 'Taco restaurant with lots of tacos' do
+    subject do
+      beefy = Taco.new(Rating.new(4.5))
+      crunchy = Taco.new(Rating.new(4.4))
+      seafood = Taco.new(Rating.new(4.1))
+      TacoShop.create({
+        location: 'establishment ln.',
+        type: 'restaurant',
+        tacos: {
+          beefy: beefy,
+          crunchy: crunchy,
+          seafood: seafood
+        }
+      })
+    end
 
+    it 'has three tacos' do
+      expect(subject.tacos.length).to eq(3)
+    end
+
+    it 'is a restaurant' do
+      expect(subject.type).to eq('restaurant')
+    end
+
+    it 'can remove a taco and have rating change' do
+      subject.remove_taco(:seafood)
+      expect(subject.tacos.length).to eq(2)
+      expect(subject.rating).to eq(4.45)
+    end
   end
 end
