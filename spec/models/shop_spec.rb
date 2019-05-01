@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Shop, type: :model do
-  context 'New tacoshop with no tacos' do
+  context 'New shop with no tacos' do
     subject do
-      TacoShop.create(
+      Shop.create(
         name: 'Tacoless Shop',
         address: '1234 coolio st.',
         type: 'truck'
@@ -30,7 +30,7 @@ RSpec.describe Shop, type: :model do
     crunchy = Taco.new(Rating.new(4.4))
     seafood = Taco.new(Rating.new(4.1))
     subject do
-      taco_shop = TacoShop.create({
+      taco_shop = Shop.create({
         address: 'establishment ln.',
         type: 'restaurant'
       })
