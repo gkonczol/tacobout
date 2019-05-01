@@ -22,12 +22,12 @@ class TacoShop
     location
   end
 
-  def rate_up(rating)
-    rating.rate_up(rating) 
+  def rate(rating)
+    rating.add_rating(rating) 
   end
 
   def get_rating
-    rating.get_rating
+    rating.rating
   end
 
 end
