@@ -1,8 +1,8 @@
 class Rating
   attr_accessor :rating, :num_ratings
 
-  def initialize
-    @rating = nil
+  def initialize(rating = nil)
+    @rating = rating
     @num_ratings = 0
   end
 

@@ -19,16 +19,16 @@ RSpec.describe Shop, type: :model do
     end
 
     it 'can add a new taco' do
-      subject.add_taco(Taco.create(Rating.new), 'maximum ultra-beef')
+      subject.add_taco(Taco.create(rating: Rating.new), 'maximum ultra-beef')
       expect(subject.tacos.length).to eq(1)
       expect(subject.tacos[0].name).to be('maximum ultra-beef')
     end
   end
 
   context 'Taco restaurant with lots of tacos' do
-    beefy = Taco.new(Rating.new(4.5))
-    crunchy = Taco.new(Rating.new(4.4))
-    seafood = Taco.new(Rating.new(4.1))
+    beefy = Taco.create(rating: Rating.new(4.5))
+    crunchy = Taco.create(rating: Rating.new(4.4))
+    seafood = Taco.create(rating: Rating.new(4.1))
     subject do
       taco_shop = Shop.create({
         address: 'establishment ln.',
