@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_24_183618) do
+ActiveRecord::Schema.define(version: 2019_05_01_175833) do
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating"
+    t.integer "taco_id"
+    t.integer "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_ratings_on_shop_id"
+    t.index ["taco_id"], name: "index_ratings_on_taco_id"
+  end
 
   create_table "shells", force: :cascade do |t|
     t.integer "primary_ingredient"
