@@ -34,7 +34,7 @@ RSpec.describe Rating, type: :model do
     end
     
     it 'instantiates when given tacos with ratings' do
-      expect(subject.rating).to not be_nil
+      expect(subject.rating).to !eq(nil)
     end
 
     it 'averages ratings if multiple tacos' do
