@@ -3,10 +3,11 @@ require 'rails_helper'
 RSpec.describe TacoShop, type: :model do
   context 'New tacoshop with no tacos' do
     subject do
-      TacoShop.create({
-        location: '1234 coolio st.',
+      TacoShop.create(
+        name: 'Tacoless Shop',
+        address: '1234 coolio st.',
         type: 'truck'
-      })
+      )
     end
 
     it 'has no tacos' do
@@ -25,19 +26,17 @@ RSpec.describe TacoShop, type: :model do
   end
 
   context 'Taco restaurant with lots of tacos' do
+    beefy = Taco.new(Rating.new(4.5))
+    crunchy = Taco.new(Rating.new(4.4))
+    seafood = Taco.new(Rating.new(4.1))
     subject do
-      beefy = Taco.new(Rating.new(4.5))
-      crunchy = Taco.new(Rating.new(4.4))
-      seafood = Taco.new(Rating.new(4.1))
-      TacoShop.create({
-        location: 'establishment ln.',
-        type: 'restaurant',
-        tacos: {
-          beefy: beefy,
-          crunchy: crunchy,
-          seafood: seafood
-        }
+      taco_shop = TacoShop.create({
+        address: 'establishment ln.',
+        type: 'restaurant'
       })
+      taco_shop.tap do |ts|
+        ts.tacos.push(beefy, crunchy, seafood)
+      end
     end
 
     it 'has three tacos' do
