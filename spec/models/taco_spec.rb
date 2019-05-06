@@ -78,7 +78,7 @@ RSpec.describe Taco, type: :model do
       end
 
       it 'has an averaged spicy level' do
-        expect(subject.spicy_level).to eq(7.5)
+        expect(subject.average_spice).to eq(7.5)
       end
 
       # it 'is not vegetarian' do
@@ -91,7 +91,7 @@ RSpec.describe Taco, type: :model do
       subject(:cheesy_taco) { Taco.create(shell: shell, shop: shop, ingredients: ingredients) }
 
       it 'has a medium spice with one spicy ingredient' do
-        expect(subject.spicy_level).to eq(5)
+        expect(subject.average_spice).to eq(5)
       end
 
       # it 'is vegetarian' do
