@@ -80,7 +80,7 @@ RSpec.describe Taco, type: :model do
         expect(subject.ingredients).not_to be_empty
       end
 
-      it 'is not vegetarian' do
+      it 'is not vegan' do
         expect(subject.vegan?).to eq(false)
       end
 
@@ -92,6 +92,10 @@ RSpec.describe Taco, type: :model do
     context 'vegan taco' do
       let(:ingredients) { %i[medium_salsa onion radish potato tofu] }
       subject(:vegan_taco) { Taco.new(shell: shell, shop: shop, ingredients: ingredients) }
+
+      it 'has the correct ingredients' do
+        expect(subject.ingredients).to contain_exactly(medium_Salsa, onion, radish, potato, tofu)
+      end
 
       it 'is vegan' do
         expect(taco.vegan?).to eq(true)
