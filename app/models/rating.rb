@@ -2,9 +2,10 @@ class Rating < ApplicationRecord
   belongs_to :taco
   belongs_to :shop
 
-  def initialize
-    @rating = 0
-    @cumulative_rating
+
+  def initialize(rating = nil)
+    @rating = rating
+    @cumulative_rating = 0
     @num_ratings = 0
   end
 
