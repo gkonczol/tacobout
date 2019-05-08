@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_175833) do
+ActiveRecord::Schema.define(version: 2019_05_06_163201) do
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name"
+    t.integer "spice"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "ratings", force: :cascade do |t|
     t.integer "rating"

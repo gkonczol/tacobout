@@ -12,4 +12,9 @@ class Taco < ApplicationRecord
     end
     true
   end
+  
+  def average_spice
+    total_spice = ingredients.reduce(:+)
+    total_spice / ingredients.count
+  end
 end
