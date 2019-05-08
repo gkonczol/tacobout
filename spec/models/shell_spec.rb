@@ -14,7 +14,7 @@ RSpec.describe Shell, type: :model do
     end
   end
 
-  context 'hard flower shell' do
+  context 'hard flour shell' do
     subject do
       Shell.create(
         primary_ingredient: 1,
@@ -22,8 +22,8 @@ RSpec.describe Shell, type: :model do
       )
     end
 
-    it 'has a flower shell' do
-      expect(subject.primary_ingredient).to eq('flower')
+    it 'has a flour shell' do
+      expect(subject.primary_ingredient).to eq('flour')
     end
   end
 end
