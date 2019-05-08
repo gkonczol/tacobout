@@ -59,39 +59,44 @@ RSpec.describe Taco, type: :model do
     end
   end
 
-  # context 'with ingredients' do
-  #   let(:cheese) { Ingredient.new('cheese') }
-  #   let(:chicken) { Ingredient.new('chicken') }
-  #   let(:medium_salsa) { Ingredient.new('salsa', spicy: 5) }
+  context 'with ingredients' do
+    let(:cheese) { Ingredient.create('cheese') }
+    let(:chicken) { Ingredient.create('chicken') }
+    let(:medium_salsa) { Ingredient.create('salsa', spicy: 5) }
+    let(:hot_salsa) { Ingredient.create('Hot Salsa', spicy: 10) }
 
-  #   context 'cheesy chicken taco' do
-  #     let(:ingredients) { %i[cheese chicken medium_salsa] }
-  #     subject(:cheesy_chicken_taco) { Taco.new(shell: shell, shop: shop, ingredients: ingredients) }
+    context 'cheesy chicken taco' do
+      let(:ingredients) { %i[cheese chicken medium_salsa hot_salsa] }
+      subject(:cheesy_chicken_taco) { Taco.create(shell: shell, shop: shop, ingredients: ingredients) }
 
-  #     it 'has the correct ingredients' do
-  #       expect(subject.ingredients).to contain_exactly(cheese, chicken, medium_salsa)
-  #     end
+      it 'has the correct ingredients' do
+        expect(subject.ingredients).to contain_exactly(cheese, chicken, medium_salsa, hot_salsa)
+      end
 
-  #     it 'is not empty' do
-  #       expect(subject.ingredients).not_to be_empty
-  #     end
+      it 'is not empty' do
+        expect(subject.ingredients).not_to be_empty
+      end
 
-  #     it 'is not vegetarian' do
-  #       expect(subject.vegetarian).to eq(false)
-  #     end
+      it 'has an averaged spicy level' do
+        expect(subject.average_spice).to eq(7.5)
+      end
 
-  #     it 'has a spicy level' do
-  #       expect(subject.spicy_level).to eq(5)
-  #     end
-  #   end
+      # it 'is not vegetarian' do
+      #   expect(subject.vegetarian).to eq(false)
+      # end
+    end
 
-  #   context 'cheesy taco' do
-  #     let(:ingredients) { %i[cheese medium_salsa] }
-  #     subject(:cheesy_taco) { Taco.new(shell: shell, shop: shop, ingredients: ingredients) }
+    context 'cheesy taco' do
+      let(:ingredients) { %i[cheese medium_salsa] }
+      subject(:cheesy_taco) { Taco.create(shell: shell, shop: shop, ingredients: ingredients) }
 
-  #     it 'is vegetarian' do
-  #       expect(taco.vegetarian).to eq(true)
-  #     end
-  #   end
-  # end
+      it 'has a medium spice with one spicy ingredient' do
+        expect(subject.average_spice).to eq(5)
+      end
+
+      # it 'is vegetarian' do
+      #   expect(taco.vegetarian).to eq(true)
+      # end
+    end
+  end
 end
