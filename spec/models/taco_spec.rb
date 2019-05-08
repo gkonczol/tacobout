@@ -62,20 +62,28 @@ RSpec.describe Taco, type: :model do
   end
 
   context 'with mixed ingredients' do
-    let(:cheese) { Ingredient.new('cheese') }
-    let(:chicken) { Ingredient.new('chicken') }
-    let(:medium_salsa) { Ingredient.new('salsa', spicy: 5) }
+    let(:cheese) { Ingredient.new(name: 'cheese') }
+    let(:chicken) { Ingredient.new(name: 'chicken') }
+    let(:medium_salsa) { Ingredient.new(name: 'salsa', spice: 5) }
+
+    before do
+      subject.ingredients.push(cheese, chicken, medium_salsa)
+    end
 
     it 'has the correct ingredients' do
       expect(subject.ingredients).to contain_exactly(cheese, chicken, medium_salsa)
     end
-
   end
+
   context 'with ingredients' do
-    let(:cheese) { Ingredient.create('cheese') }
-    let(:chicken) { Ingredient.create('chicken') }
-    let(:medium_salsa) { Ingredient.create('salsa', spicy: 5) }
-    let(:hot_salsa) { Ingredient.create('Hot Salsa', spicy: 10) }
+    let(:cheese) { Ingredient.create(name: 'cheese') }
+    let(:chicken) { Ingredient.create(name: 'chicken') }
+    let(:medium_salsa) { Ingredient.create(name: 'salsa', spice: 5) }
+    let(:hot_salsa) { Ingredient.create(name: 'Hot Salsa', spice: 10) }
+
+    before do
+      subject.ingredients.push(cheese, chicken, medium_salsa, hot_salsa)
+    end
 
     it 'has the correct ingredients' do
       expect(subject.ingredients).to contain_exactly(cheese, chicken, medium_salsa, hot_salsa)

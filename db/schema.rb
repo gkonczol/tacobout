@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_06_163201) do
+ActiveRecord::Schema.define(version: 2019_05_08_184516) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.integer "spice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredients_tacos", id: false, force: :cascade do |t|
+    t.integer "taco_id", null: false
+    t.integer "ingredient_id", null: false
+    t.index ["taco_id", "ingredient_id"], name: "index_ingredients_tacos_on_taco_id_and_ingredient_id"
   end
 
   create_table "ratings", force: :cascade do |t|
