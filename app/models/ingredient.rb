@@ -1,4 +1,5 @@
 class Ingredient < ApplicationRecord
+  has_and_belongs_to_many :tacos
   DEFAULT_SPICE = 0
   DEFAULT_VEGAN = true
 
