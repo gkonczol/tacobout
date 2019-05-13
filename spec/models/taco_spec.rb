@@ -66,8 +66,8 @@ RSpec.describe Taco, type: :model do
   end
 
   context 'with ingredients' do
-    let(:cheese) { Ingredient.create(name: 'cheese') }
-    let(:chicken) { Ingredient.create(name: 'chicken') }
+    let(:cheese) { Ingredient.create(name: 'cheese', vegan: false) }
+    let(:chicken) { Ingredient.create(name: 'chicken', vegan: false) }
     let(:medium_salsa) { Ingredient.create(name: 'salsa', spice: 5) }
     let(:hot_salsa) { Ingredient.create(name: 'Hot Salsa', spice: 10) }
 
