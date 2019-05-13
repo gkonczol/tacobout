@@ -3,18 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Taco, type: :model do
-  let(:shop) do
-    Shop.create(
-      name: 'Magic Tacos',
-      address: '123 Taco Street, Tacoland, OR, 97701'
-    )
-  end
-  let(:shell) do
-    Shell.create(
-      primary_ingredient: 0,
-      soft: false
-    )
-  end
+  let(:shop) { create(:shop) }
+  let(:shell) { create(:shell) }
 
   context 'empty taco' do
     let(:taco_name) { 'Useless Taco' }
