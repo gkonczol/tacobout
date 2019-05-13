@@ -7,16 +7,11 @@ class Taco < ApplicationRecord
   has_and_belongs_to_many :ingredients
 
   def vegan?
-    ingredients.each do |ingred|
-      if not ingred.vegan?
-        return false
-      end
-    end
-    true
+    ingredients.all?(&:vegan)
   end
-  
+
   def average_spice
-    total_spice = ingredients.reduce(:+)
+    total_spice = ingredients.sum
     total_spice / ingredients.count
   end
 end
