@@ -14,4 +14,9 @@ class Taco < ApplicationRecord
     total_spice = ingredients.sum
     total_spice / ingredients.count
   end
+
+  def perform(big_dependency)
+    big_dependency.execute
+    return 42
+  end
 end

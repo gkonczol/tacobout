@@ -18,6 +18,22 @@ RSpec.describe Taco, type: :model do
       )
     end
 
+    # it 'has a slow test' do
+    #   taco.perform(BigDependency.new)
+    # end
+
+    it 'has a fast mocked stubbed execute' do
+      big_dependency = BigDependency.new
+      allow(big_dependency).to receive(:execute)
+      taco.perform(big_dependency)
+    end
+
+    it 'has a fast test double' do
+      big_dependency = instance_double(BigDependency)
+      allow(big_dependency).to receive(:execute)
+      taco.perform(big_dependency)
+    end
+
     it 'has a name' do
       expect(subject.name).to eq(taco_name)
     end
