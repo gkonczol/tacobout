@@ -18,22 +18,6 @@ RSpec.describe Taco, type: :model do
       )
     end
 
-    # it 'has a slow test' do
-    #   taco.perform(BigDependency.new)
-    # end
-
-    it 'has a fast mocked stubbed execute' do
-      big_dependency = BigDependency.new
-      allow(big_dependency).to receive(:execute)
-      taco.perform(big_dependency)
-    end
-
-    it 'has a fast test double' do
-      big_dependency = instance_double(BigDependency)
-      allow(big_dependency).to receive(:execute)
-      taco.perform(big_dependency)
-    end
-
     it 'has a name' do
       expect(subject.name).to eq(taco_name)
     end
@@ -102,34 +86,20 @@ RSpec.describe Taco, type: :model do
     it 'is not vegan' do
       expect(subject.vegan?).to eq(false)
     end
-
-    it 'has a spicy level' do
-      expect(subject.spicy_level).to eq(5)
-    end
   end
 
   context 'vegan taco' do
-    let(:ingredients) { %i[medium_salsa onion radish potato tofu] }
-    subject(:vegan_taco) { Taco.new(shell: shell, shop: shop, ingredients: ingredients) }
+    let(:cheese) { Ingredient.new(name: 'cheese') }
+    let(:chicken) { Ingredient.new(name: 'chicken') }
+    let(:medium_salsa) { Ingredient.new(name: 'salsa', spice: 5) }
+    let(:hot_salsa) { Ingredient.create(name: 'Hot Salsa', spice: 10) }
+    subject(:vegan_taco) { Taco.new(shell: shell, shop: shop) }
+    before do
+      subject.ingredients.push(cheese, chicken, medium_salsa, hot_salsa)
+    end
 
     it 'has the correct ingredients' do
-      expect(subject.ingredients).to contain_exactly(medium_salsa, onion, radish, potato, tofu)
-    end
-
-    it 'is vegan' do
-      expect(taco.vegan?).to eq(true)
-    end
-    it 'has a cumulative spicy level' do
-      expect(subject.average_spice).to eq(7.5)
-    end
-  end
-
-  context 'cheesy taco' do
-    let(:ingredients) { %i[cheese medium_salsa] }
-    subject(:cheesy_taco) { Taco.create(shell: shell, shop: shop, ingredients: ingredients) }
-
-    it 'has a medium spice with one spicy ingredient' do
-      expect(subject.average_spice).to eq(5)
+      expect(subject.ingredients).to contain_exactly(cheese, chicken, medium_salsa, hot_salsa)
     end
   end
 end
