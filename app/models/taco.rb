@@ -10,11 +10,6 @@ class Taco < ApplicationRecord
     ingredients.all?(&:vegan)
   end
 
-  def average_spice
-    total_spice = ingredients.sum
-    total_spice / ingredients.count
-  end
-
   def perform(big_dependency)
     big_dependency.execute
     return 42
