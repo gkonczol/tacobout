@@ -26,12 +26,6 @@ ActiveRecord::Schema.define(version: 2019_05_13_183123) do
     t.index ["taco_id", "ingredient_id"], name: "index_ingredients_tacos_on_taco_id_and_ingredient_id"
   end
 
-  create_table "ingredients_tacos", id: false, force: :cascade do |t|
-    t.integer "taco_id", null: false
-    t.integer "ingredient_id", null: false
-    t.index ["taco_id", "ingredient_id"], name: "index_ingredients_tacos_on_taco_id_and_ingredient_id"
-  end
-
   create_table "ratings", force: :cascade do |t|
     t.integer "rating"
     t.integer "taco_id"
