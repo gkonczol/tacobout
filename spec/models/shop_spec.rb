@@ -2,13 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Shop, type_id: :model do
   context 'New shop with no tacos' do
-    subject do
-      Shop.create(
-        name: 'Tacoless Shop',
-        address: '1234 coolio st.',
-        type_id: 'truck'
-      )
-    end
+    subject = Shop.create(
+                           name: 'Tacoless Shop',
+                           address: '1234 coolio st.',
+                           type_id: 'truck'
+                         )
+    subject.setup
 
     it 'declares itself as a truck' do
       expect(subject.type_id).to eq('truck')
@@ -29,6 +28,7 @@ RSpec.describe Shop, type_id: :model do
         address: 'establishment ln.',
         type_id: 'restaurant'
       })
+      taco_shop.setup
       taco_shop.tap do |ts|
         ts.tacos.push(beefy, crunchy, seafood)
       end
