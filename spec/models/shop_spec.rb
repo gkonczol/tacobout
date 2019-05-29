@@ -1,27 +1,22 @@
 require 'rails_helper'
 
-RSpec.describe Shop, type: :model do
+RSpec.describe Shop, type_id: :model do
   context 'New shop with no tacos' do
     subject do
       Shop.create(
         name: 'Tacoless Shop',
         address: '1234 coolio st.',
-        type: 'truck'
+        type_id: 'truck'
       )
     end
 
-    it 'has no tacos' do
-      expect(subject.tacos).to eq(nil)
-    end
-
     it 'declares itself as a truck' do
-      expect(subject.type).to eq('truck')
+      expect(subject.type_id).to eq('truck')
     end
 
     it 'can add a new taco' do
-      subject.add_taco(Taco.create(ratings: Rating.new), 'maximum ultra-beef')
+      subject.add_taco(Taco.create)
       expect(subject.tacos.length).to eq(1)
-      expect(subject.tacos[0].name).to be('maximum ultra-beef')
     end
   end
 
@@ -32,7 +27,7 @@ RSpec.describe Shop, type: :model do
     subject do
       taco_shop = Shop.create({
         address: 'establishment ln.',
-        type: 'restaurant'
+        type_id: 'restaurant'
       })
       taco_shop.tap do |ts|
         ts.tacos.push(beefy, crunchy, seafood)
@@ -44,7 +39,7 @@ RSpec.describe Shop, type: :model do
     end
 
     it 'is a restaurant' do
-      expect(subject.type).to eq('restaurant')
+      expect(subject.type_id).to eq('restaurant')
     end
   end
 end
