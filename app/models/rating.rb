@@ -2,18 +2,11 @@ class Rating < ApplicationRecord
   belongs_to :taco
   belongs_to :shop
 
-  attr_accessor :rating_value
+  attr_accessor :rating
 
-
-  def initialize(rating_value = nil)
-    @rating_value = rating_value
-    @cumulative_rating = 0
-    @num_ratings = 0
-  end
-
-  def add_rating(new_rating)
-    num_ratings += 1
-    cumulative_rating += new_rating
-    rating_value = (cumulative_rating) / num_ratings
+  def setup(params)
+    self.rating = params.fetch(:rating, 0)
+    self.taco_id = params.fetch(:taco, nil)
+    self.shop_id = params.fetch(:shop, nil)
   end
 end
