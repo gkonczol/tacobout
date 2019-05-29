@@ -10,8 +10,23 @@ class Taco < ApplicationRecord
     ingredients.all?(&:vegan)
   end
 
-  def perform(big_dependency)
-    big_dependency.execute
-    return 42
-  end
+  # def rating
+  #   if ratings.empty?
+  #     nil
+  #   else
+  #     rating_sum = 0
+  #     ratings.each { |rating| rating_sum += rating.rating_value }
+  #     return rating_sum
+  #   end
+  # end
+
+  # def rate(rating)
+  #   ratings.push(Rating.new(rating))
+  # end
+
+  # def perform(big_dependency)
+  #   big_dependency.execute
+  #   return 42
+  # end
+  
 end
