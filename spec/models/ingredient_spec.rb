@@ -15,7 +15,7 @@ RSpec.describe Ingredient, type: :model do
   end
 
   it 'defaults to vegan' do
-    expect(default.is_vegan?).to eq(true)
+    expect(default.vegan?).to eq(true)
   end
 
   it 'has no spice' do
