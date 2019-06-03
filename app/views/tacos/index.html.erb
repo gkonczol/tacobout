@@ -1,0 +1,19 @@
+<h1>All Tacos</h1>
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Shell</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tacos.each do |taco| %>
+      <% myshell = Shell.where(:id => taco.shell_id) %>
+      <% shellword = myshell.pluck(:soft) ? "soft" : "hard" %>
+      <tr class="taco-row" id="<%= dom_id(taco) %>">
+        <td class="name"><%= taco.name %></td>
+        <td class="shell"><%= shellword %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

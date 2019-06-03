@@ -1,0 +1,11 @@
+<h1>New Taco</h1>
+
+<%= form_for(@taco) do |f| %>
+  <%= f.label(:name) %>
+  <%= f.text_field(:name) %>
+  <br />
+  <%= f.label(:shell) %>
+  <%= f.check_box(:shell_id) %>
+  <br />
+  <%= f.submit %>
+<% end %>
