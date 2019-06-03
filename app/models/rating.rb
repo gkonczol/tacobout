@@ -2,7 +2,7 @@ class Rating < ApplicationRecord
   belongs_to :taco
   belongs_to :shop
 
-  attr_accessor :rating
+  attr_accessor :rating, :type
 
   def setup(params)
     self.rating = params.fetch(:rating, 0)
