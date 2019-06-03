@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_06_03_061934) do
     t.string "description"
     t.integer "shell_id"
     t.integer "shop_id"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

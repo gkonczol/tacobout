@@ -9,7 +9,10 @@ RSpec.describe 'adding a taco', type: :system do
     check('taco_soft_checked')
     click_on("Create Taco")
     visit tacos_path
-    expect(page).to have_content("Cheesy Chicken Taco")
-    expect(page).to have_content("soft")
+    @taco = Taco.find_by(name: "Cheesy Chicken Taco")
+    expect(page).to have_selector(
+      "#taco_#{@taco.id} .name", text: "Cheesy Chicken Taco")
+    expect(page).to have_selector(
+      "#taco_#{@taco.id} .shell", text: "soft")
   end
 end

@@ -16,12 +16,10 @@ class TacosController < ApplicationController
       name: params[:taco][:name], 
       shell_id: shell.id
       )
-      taco.save
+    if taco.save
       redirect_to tacos_path
-    # if taco.save
-    #   redirect_to tacos_path
-    # else
-    #   render :new
-    # end
+    else
+      render :new
+    end
   end
 end
