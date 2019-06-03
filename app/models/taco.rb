@@ -6,10 +6,11 @@ class Taco < ApplicationRecord
   # has_many :ratings
   # has_and_belongs_to_many :ingredients
 
-  attr_accessor :my_ratings
+  attr_accessor :my_ratings, :soft_checked
 
   def setup
     @my_ratings = []
+    @soft_checked = false
   end
 
   def vegan?

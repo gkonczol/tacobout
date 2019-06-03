@@ -9,7 +9,7 @@ class TacosController < ApplicationController
 
   def create
     shell = Shell.create(
-      soft: params[:taco][:shell]
+      soft: params[:taco][:soft_checked]
     )
     shell.save
     taco = Taco.create(
