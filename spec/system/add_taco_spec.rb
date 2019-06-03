@@ -17,7 +17,7 @@ RSpec.describe 'adding a taco', type: :system do
       "#taco_#{@taco.id} .shell", text: "soft")
     expect(page).to have_selector(
       "#taco_#{@taco.id} .image_url")
-    @taco_image = find("#taco_#{@taco.id} .image_url")
+    @taco_image = find("#taco_#{@taco.id} .image_img")
     expect(@taco_image[:src]).to eq("https://i.imgur.com/44Ky4Dv.jpg")
   end
 end
