@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_13_183123) do
+ActiveRecord::Schema.define(version: 2019_06_03_061934) do
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 2019_05_13_183123) do
     t.index ["taco_id"], name: "index_ratings_on_taco_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "rating_id"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rating_id"], name: "index_reviews_on_rating_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "shells", force: :cascade do |t|
     t.integer "primary_ingredient"
     t.boolean "soft"
@@ -56,6 +66,14 @@ ActiveRecord::Schema.define(version: 2019_05_13_183123) do
     t.string "description"
     t.integer "shell_id"
     t.integer "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

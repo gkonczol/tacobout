@@ -1,0 +1,4 @@
+<h1><%= @user.username %></h1>
+email: <%= @user.email %>
+<br />
+<a id='writereviewlink' href='<%= "/users/" + @user.id.to_s + "/write" %>'>write a review!</a>
