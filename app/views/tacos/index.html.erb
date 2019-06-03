@@ -8,8 +8,8 @@
   </thead>
   <tbody>
     <% @tacos.each do |taco| %>
-      <% myshell = Shell.where(:id => taco.shell_id) %>
-      <% if(myshell.pluck(:soft) == false) then shellword = "soft" else shellword = "hard" end %>
+      <% myshell = Shell.where(:id => taco.shell_id).pluck(:soft) %>
+      <% if(myshell[0] == true) then shellword = "soft" else shellword = "hard" end %>
       <tr class="taco-row" id="<%= dom_id(taco) %>">
         <td class="name"><%= taco.name %></td>
         <td class="shell"><%= shellword %></td>
