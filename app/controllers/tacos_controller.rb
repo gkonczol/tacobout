@@ -14,7 +14,8 @@ class TacosController < ApplicationController
     shell.save
     taco = Taco.create(
       name: params[:taco][:name], 
-      shell_id: shell.id
+      shell_id: shell.id,
+      image_url: params[:taco][:image_url]
       )
     if taco.save
       redirect_to tacos_path
