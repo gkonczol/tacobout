@@ -3,20 +3,21 @@
 require 'rails_helper'
 
 RSpec.describe Taco, type: :model do
-  let(:shop) { create(:shop) }
-  let(:shell) { create(:shell) }
+  
 
   context 'empty taco' do
-    let(:taco_name) { 'Useless Taco' }
-    let(:taco_description) { 'empty like my soul' }
-    subject(:taco) do
-      Taco.create(
+    shop = Shop.create
+    shell = Shell.create(
+      primary_ingredient: 0,
+      soft: false)
+    taco_name = 'Useless Taco'
+    taco_description ='empty like my soul'
+    subject = Taco.create(
         name: taco_name,
         description: taco_description,
-        shell: shell,
-        shop: shop
+        shell_id: shell.id,
+        shop_id: shop.id
       )
-    end
 
     it 'has a name' do
       expect(subject.name).to eq(taco_name)
@@ -27,11 +28,11 @@ RSpec.describe Taco, type: :model do
     end
 
     it 'has a shell' do
-      expect(subject.shell).not_to be_nil
+      expect(subject.shell_id).not_to be_nil
     end
 
     it 'has a shop' do
-      expect(subject.shop).not_to be_nil
+      expect(subject.shop_id).not_to be_nil
     end
 
     it 'has a corn shell' do
@@ -93,7 +94,11 @@ RSpec.describe Taco, type: :model do
     let(:chicken) { Ingredient.new(name: 'chicken') }
     let(:medium_salsa) { Ingredient.new(name: 'salsa', spice: 5) }
     let(:hot_salsa) { Ingredient.create(name: 'Hot Salsa', spice: 10) }
-    subject(:vegan_taco) { Taco.new(shell: shell, shop: shop) }
+    shop = Shop.create
+    shell = Shell.create(
+      primary_ingredient: 0,
+      soft: false)
+    subject = Taco.new(shell_id: shell.id, shop_id: shop.id)
     before do
       subject.ingredients.push(cheese, chicken, medium_salsa, hot_salsa)
     end
