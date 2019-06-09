@@ -1,6 +1,4 @@
 class Rating < ApplicationRecord
-  belongs_to :taco
-  belongs_to :shop
 
   attr_accessor :rating, :type
 

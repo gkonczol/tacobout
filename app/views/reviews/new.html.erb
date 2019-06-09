@@ -1,28 +1,69 @@
 <h1>Write A Review! </h1>
 <%= @user.username %>
-<%= form_for(@review) do |f| %>
-  
-  <p>this is a review for a:</p>
-  <%= f.radio_button :type, "shop", :checked => false  %>
-  <%= f.label("shop") %>
-   <%= f.radio_button :type, "taco", :checked => false  %>
-   <%= f.label("taco") %>
-  <br />
-  <p>rating:</p>
-  <%= f.radio_button :rating, 1, :checked => false  %>
-  <%= f.label(1) %>
-  <%= f.radio_button :rating, 2, :checked => false  %>
-  <%= f.label(2) %>
-  <%= f.radio_button :rating, 3, :checked => false  %>
-  <%= f.label(3) %>
-  <%= f.radio_button :rating, 4, :checked => false  %>
-  <%= f.label(4) %>
-  <%= f.radio_button :rating, 5, :checked => false  %>
-  <%= f.label(5) %>
-  <br />
-  <%= f.label("Comments:") %>
-  <br />
-  <%= f.text_area :comment %>
-  <br />
-  <%= f.submit %>
+<%= @user.id %>
+<% if @user.username == "not_logged_in" then %>
+  <a href="/users/new">sign up</a>
+<% else %>
+
+  <%= form_for(@review) do |f| %>
+    
+    <p>this is a review for:</p>
+    <!--
+    <%= f.radio_button :type, "shop", :checked => false  %>
+    <%= f.label("shop") %>
+     <%= f.radio_button :type, "taco", :checked => false  %>
+     <%= f.label("taco") %>
+    <br />
+
+
+    -->
+    <p>shop:</p>
+    <select name="shop_id">
+      <% none_shop = Shop.find_by name: "(none)" %>
+      <% if none_shop.nil? then %>
+        <% none_shop = Null_Shop.create %>
+        <% none_shop.setup %>
+        <% none_shop.save %>
+      <% end %>
+        <option value="<%= none_shop.id %>"><%= none_shop.name %></option>
+      <%= @shops.each do |s| %>
+        <% if s.name != "(none)" %>
+          <option value="<%= s.id %>"><%= s.name %></option>
+        <% end %>
+      <% end %>
+    </select>
+    <p>taco:</p>
+    <select name="taco_id">
+      <% none_taco= Taco.find_by name: "(none)" %>
+      <% if none_taco.nil? then %>
+        <% none_taco = Null_Taco.create %>
+        <% none_taco.setup %>
+        <% none_taco.save %>
+      <% end %>
+      <option value="<%= none_taco.id %>"><%= none_taco.name %></option>
+      <%= @tacos.each do |s| %>
+        <% if s.name != "(none)" %>
+          <option value="<%= s.id %>"><%= s.name %></option>
+        <% end %>
+      <% end %>
+    </select>
+    <p>rating:</p>
+    <%= f.radio_button :rating, 1, :checked => false  %>
+    <%= f.label(1) %>
+    <%= f.radio_button :rating, 2, :checked => false  %>
+    <%= f.label(2) %>
+    <%= f.radio_button :rating, 3, :checked => false  %>
+    <%= f.label(3) %>
+    <%= f.radio_button :rating, 4, :checked => false  %>
+    <%= f.label(4) %>
+    <%= f.radio_button :rating, 5, :checked => false  %>
+    <%= f.label(5) %>
+    <br />
+    <%= f.label("Comments:") %>
+    <br />
+    <%= f.text_area :comment %>
+    <br />
+    <input type="hidden" name="user_id" value="<%= @user.id %>"></input>
+    <%= f.submit %>
+  <% end %>
 <% end %>
