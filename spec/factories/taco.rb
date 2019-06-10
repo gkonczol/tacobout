@@ -2,6 +2,9 @@ FactoryBot.define do
   factory :taco do
     trait :default do
       name {'fake taco'}
+      description {'fake description'}
+      shell_id {nil}
+      shop_id {nil}
     end
 
     trait :useless do

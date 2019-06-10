@@ -96,21 +96,21 @@ RSpec.describe Taco, type: :model do
   end
 
   context 'rate a taco' do
-    subject = Taco.create
-    subject.setup
+    rated_taco = FactoryBot.build(:taco, :default)
+    rated_taco.setup
 
-    it 'initializes to zero' do
-      expect(subject.rating).to eq(0)
+    it 'rating initializes to zero' do
+      expect(rated_taco.rating).to eq(0)
     end
 
-    it 'will become 5 when rated up 5 once' do
-      subject.rate(5)
-      expect(subject.rating).to eq(5)
+    it 'rating will become 5 when rated up 5 once' do
+      rated_taco.rate(5)
+      expect(rated_taco.rating).to eq(5)
     end
 
-    it 'will average and become 3 when second rating is 1' do
-      subject.rate(1)
-      expect(subject.rating).to eq(3)
+    it 'rating will average and become 3 when second rating is 1' do
+      rated_taco.rate(1)
+      expect(rated_taco.rating).to eq(3)
     end
   end
 end
