@@ -16,5 +16,9 @@ class Review < ApplicationRecord
   	return @taco.name
   end
 
+  def retrieve_rating_value
+  	return get_rating.rating
+  end
+
   
 end

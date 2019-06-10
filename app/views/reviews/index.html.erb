@@ -11,12 +11,14 @@
   </thead>
   <tbody>
     <% @reviews.each do |r| %>
-      <% if ((r.retrieve_shop_name != "(none") && (r.retrieve_taco_name != "(none)")) then %>
+      <% if ((r.retrieve_shop_name != "(none") || (r.retrieve_taco_name != "(none)")) then %>
         <tr class="review-row" id="<%= dom_id(r) %>">
           <% @this_user = User.find_by id: r.user_id %>
           <td class="user"><%= @this_user.username %></td>
           <td class="shop"><%= r.retrieve_shop_name %></td>
           <td class="taco"><%= r.retrieve_taco_name %></td>
+          <!-- <td class="rating"><%= r.get_rating.rating %></td> -->
+          <td class="rating"><%= r.get_rating.rating %></td>
         </tr>
       <% end %>
     <% end %>
