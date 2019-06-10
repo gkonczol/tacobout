@@ -3,28 +3,27 @@
 require 'rails_helper'
 
 RSpec.describe Taco, type: :model do
-  
+  let(:cheese) {FactoryBot.build(:ingredient, :cheese)}
+  let(:chicken) {FactoryBot.build(:ingredient, :chicken)}
+  let(:medium_salsa) {FactoryBot.build(:ingredient, :mediumsalsa)}
+  let(:hot_salsa) {FactoryBot.build(:ingredient, :hotsalsa)}
 
   context 'empty taco' do
-    shop = Shop.create
     shell = Shell.create(
       primary_ingredient: 0,
       soft: false)
-    taco_name = 'Useless Taco'
-    taco_description ='empty like my soul'
-    subject = Taco.create(
-        name: taco_name,
-        description: taco_description,
-        shell_id: shell.id,
-        shop_id: shop.id
-      )
+    shop = Shop.create
+    subject = FactoryBot.build(:taco, :useless)
+    subject.shell_id = shell.id
+    subject.shop_id = shop.id
+    subject.save
 
     it 'has a name' do
-      expect(subject.name).to eq(taco_name)
+      expect(subject.name).to eq('Useless Taco')
     end
 
     it 'has a description' do
-      expect(subject.description).to eq(taco_description)
+      expect(subject.description).to eq('empty like my soul')
     end
 
     it 'has a shell' do
@@ -53,10 +52,6 @@ RSpec.describe Taco, type: :model do
   end
 
   context 'with mixed ingredients' do
-    let(:cheese) { Ingredient.new(name: 'cheese') }
-    let(:chicken) { Ingredient.new(name: 'chicken') }
-    let(:medium_salsa) { Ingredient.new(name: 'salsa', spice: 5) }
-
     before do
       subject.ingredients.push(cheese, chicken, medium_salsa)
     end
@@ -67,10 +62,6 @@ RSpec.describe Taco, type: :model do
   end
 
   context 'with ingredients' do
-    let(:cheese) { Ingredient.create(name: 'cheese', vegan: false) }
-    let(:chicken) { Ingredient.create(name: 'chicken', vegan: false) }
-    let(:medium_salsa) { Ingredient.create(name: 'salsa', spice: 5) }
-    let(:hot_salsa) { Ingredient.create(name: 'Hot Salsa', spice: 10) }
 
     before do
       subject.ingredients.push(cheese, chicken, medium_salsa, hot_salsa)
@@ -90,10 +81,6 @@ RSpec.describe Taco, type: :model do
   end
 
   context 'vegan taco' do
-    let(:cheese) { Ingredient.new(name: 'cheese') }
-    let(:chicken) { Ingredient.new(name: 'chicken') }
-    let(:medium_salsa) { Ingredient.new(name: 'salsa', spice: 5) }
-    let(:hot_salsa) { Ingredient.create(name: 'Hot Salsa', spice: 10) }
     shop = Shop.create
     shell = Shell.create(
       primary_ingredient: 0,
