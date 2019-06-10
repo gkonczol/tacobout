@@ -39,10 +39,5 @@ class Taco < ApplicationRecord
     new_rating.save
     my_ratings.push(new_rating)
   end
-
-  # def perform(big_dependency)
-  #   big_dependency.execute
-  #   return 42
-  # end
   
 end
