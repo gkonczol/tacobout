@@ -13,7 +13,8 @@ class UsersController < ApplicationController
 	end
 
 	def write
-		
+		@user = User.find(params[:id])
+		redirect_to new_review_path(user_id: @user.id)
 	end
 
 	def create

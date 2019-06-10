@@ -1,0 +1,17 @@
+<h1>All Shops</h1>
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Address</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shops.each do |shop| %>
+      <tr class="shop-row" id="<%= dom_id(shop) %>">
+        <td class="name"><%= shop.name %></td>
+        <td class="address"><%= shop.address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
