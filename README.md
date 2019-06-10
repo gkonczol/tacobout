@@ -2,6 +2,47 @@
 
 Find steamy hot tacos near you.
 
+# Legacy App Challenge
+
+our team inherited this project as part of the legacy app challenge for CS 381
+the following is the requirements sheet presented to us by the legacy developers:
+```
+Current State of Development
+ - fixing tests after a series of merges
+ - cleaning up factory code
+ - Taco image uploading
+ - Fixing schemas
+
+What we have so far:
+ - A big pile of crap
+What is broken:
+ - Most everything
+ - We don't have much of a frontend
+Five tasks:
+ - Make DB organization decisions
+ - Full switch over to factories
+ - Taco image uploading
+ - Creating taco shops and adding tacos
+ - User reviews a taco shop / tacos
+
+``` 
+We managed to complete each of the five tasks, neabulous as they were.
+1. "Make DB organization decisions"
+this task doesn't imply a linear solution condition. the decision to not change anything technically satisfies this. that said, we did clean up a few properties accross classes to correct relationships, as well as add users and reviews to the relational model to facilitate an intuative interaction with the legacy database schema.
+
+2. "Full switch over to factories"
+For this we refactored our tests to use factories for instantiated objects as needed. every model tests instantiates objects using factories now.
+
+3. "Taco image uploading"
+When a new taco is created, the user can add a URL from any image hosting site and that image will be displayed alongside the taco in the tacos index
+
+4. "Creating taco shops and adding tacos"
+there is now a frontend interface for creating new shops, and new tacos. new tacos are created in the context of being sold by a specific shop, so when creating a new taco, users simply select the shop that vends that taco. that taco will then appear on the menu of that particular shop's page
+
+5. "User reviews a taco shop / tacos"
+the legacy app did not implement any sort of User or review code, so to develop the reviews system we first had to implement Users. when a user is looking at their userpage, after either logging in or signing up, or by being reffered to it from the users index, they can write a review. every review for a shop is displayed on that shop's page along with the authors username and 1-5 rating.
+
+
 ## Let's Tacobout it
 
 TacoBout is the new hotness in food-finding near you. Ever hankering for a few savory tacos after a long day or looking for a quick bite for lunch? TacoBout aggregates all places that sell tacos in your area, with ratings and comments by other taco-lovers so you can let the sour cream rise to the top.
