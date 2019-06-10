@@ -1,13 +1,29 @@
+<style>
+  .container {
+    margin: auto;
+    width: 60%;
+      border: 3px solid red;
+      padding: 10px;
+  }
+
+  .block {
+    display: inline-block;
+    border: 2px solid green;
+    padding: 10px;
+  }
+</style>
+<div class="container">
+
 <h1>Write A Review! </h1>
 <%= @user.username %>
-<%= @user.id %>
 <% if @user.username == "not_logged_in" then %>
-  <a href="/users/new">sign up</a>
+  <a href="/users/new">sign up</a> or <a href="/">log in</a>
 <% else %>
 
   <%= form_for(@review) do |f| %>
     
     <p>this is a review for:</p>
+    <div class="block">
     <p>shop:</p>
     <select name="shop_id">
       <% none_shop = Shop.find_by name: "(none)" %>
@@ -23,6 +39,7 @@
         <% end %>
       <% end %>
     </select>
+  </div> <div class="block">
     <p>taco:</p>
     <select name="taco_id">
       <% none_taco= Taco.find_by name: "(none)" %>
@@ -38,6 +55,7 @@
         <% end %>
       <% end %>
     </select>
+  </div> <div class="block">
     <p>rating:</p>
     <%= f.radio_button :rating, 1, :checked => false  %>
     <%= f.label(1) %>
@@ -49,12 +67,15 @@
     <%= f.label(4) %>
     <%= f.radio_button :rating, 5, :checked => false  %>
     <%= f.label(5) %>
-    <br />
+  </div>
+  <div class="block_break">
     <%= f.label("Comments:") %>
     <br />
     <%= f.text_area :comment %>
     <br />
     <input type="hidden" name="user_id" value="<%= @user.id %>"></input>
     <%= f.submit %>
+  </div>
   <% end %>
 <% end %>
+</div>

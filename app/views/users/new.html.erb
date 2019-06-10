@@ -1,4 +1,18 @@
+<style>
+  .container {
+    margin: auto;
+    width: 60%;
+      border: 3px solid #73AD21;
+      padding: 10px;
+  }
+</style>
+<div class="container">
+
 <h1>New User</h1>
+
+<% if params[:not_found] then %>
+  <p>error logging in. please sign up for a new account or <a href="/">try logging in again</a></p>
+<% end %>
 
 <%= form_for(@user) do |f| %>
   <%= f.label(:username) %>
@@ -12,3 +26,4 @@
   </br>
   <%= f.submit %>
 <% end %>
+</div>

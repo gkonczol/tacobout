@@ -1,0 +1,27 @@
+<style>
+	.container {
+		margin: auto;
+		width: 60%;
+  		border: 3px solid #73AD21;
+  		padding: 10px;
+	}
+</style>	
+
+<div class="container">	
+<h1>TACOBOUT</h1>
+
+
+
+<h3>LOGIN</h3>
+<%= form_for @user, url: pages_login_path , html: {method: 'GET'} do |f| %>
+	<%= f.label(:username) %>
+	<%= f.text_field(:username) %>
+	<br />
+	<%= f.label(:password) %>
+	<%= f.text_field(:password) %>
+	<br />
+	<%= submit_tag "Log in" %>
+<% end %>
+<br />
+<button onclick="window.location.href = '/users/new';">sign up</button>
+</div>
