@@ -1,6 +1,6 @@
 class Rating < ApplicationRecord
 
-  attr_accessor :rating, :type
+  attr_accessor :rating
 
   def setup(params)
     self.rating = params.fetch(:rating, 0)
