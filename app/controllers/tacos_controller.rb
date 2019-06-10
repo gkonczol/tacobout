@@ -1,6 +1,7 @@
 class TacosController < ApplicationController
   def new
     @taco = Taco.new
+    @shops = Shop.all
   end
 
   def index
@@ -15,6 +16,7 @@ class TacosController < ApplicationController
     taco = Taco.create(
       name: params[:taco][:name], 
       shell_id: shell.id,
+      shop_id: params[:shop_id],
       image_url: params[:taco][:image_url]
       )
     if taco.save

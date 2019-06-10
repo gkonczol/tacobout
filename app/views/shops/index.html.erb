@@ -1,4 +1,17 @@
 <h1>All Shops</h1>
+
+<style>
+  table {
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid blue;
+    padding: 10px;
+    text-align: left;
+  }
+</style>
+
+
 <table>
   <thead>
     <tr>
@@ -9,7 +22,7 @@
   <tbody>
     <% @shops.each do |shop| %>
       <tr class="shop-row" id="<%= dom_id(shop) %>">
-        <td class="name"><%= shop.name %></td>
+        <td class="name"><a href="/shops/<%= shop.id %>"><%= shop.name %></a></td>
         <td class="address"><%= shop.address %></td>
       </tr>
     <% end %>

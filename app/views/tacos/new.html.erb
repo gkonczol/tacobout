@@ -7,6 +7,22 @@
   <%= f.label(:shell) %>
   <%= f.check_box(:soft_checked) %>
   <br />
+  <%= f.label("Shop") %>
+  <select name="shop_id">
+    <% none_shop = Shop.find_by name: "(none)" %>
+    <% if none_shop.nil? then %>
+      <% none_shop = Null_Shop.create %>
+      <% none_shop.setup %>
+      <% none_shop.save %>
+    <% end %>
+      <option value="<%= none_shop.id %>"><%= none_shop.name %></option>
+    <%= @shops.each do |s| %>
+      <% if s.name != "(none)" %>
+        <option value="<%= s.id %>"><%= s.name %></option>
+      <% end %>
+    <% end %>
+  </select>
+  <br />
   <%= f.label(:image_url) %>
   <%= f.text_field(:image_url) %>
   <br />

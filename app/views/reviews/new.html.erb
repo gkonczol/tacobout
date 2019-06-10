@@ -8,15 +8,6 @@
   <%= form_for(@review) do |f| %>
     
     <p>this is a review for:</p>
-    <!--
-    <%= f.radio_button :type, "shop", :checked => false  %>
-    <%= f.label("shop") %>
-     <%= f.radio_button :type, "taco", :checked => false  %>
-     <%= f.label("taco") %>
-    <br />
-
-
-    -->
     <p>shop:</p>
     <select name="shop_id">
       <% none_shop = Shop.find_by name: "(none)" %>
