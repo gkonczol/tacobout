@@ -1,0 +1,39 @@
+<h1>Welcome to <%= @shop.name %></h1>
+
+
+<style>
+  table {
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid green;
+    padding: 10px;
+    text-align: left;
+  }
+</style>
+
+<h2>menu</h2>
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Shell</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tacos.each do |taco| %>
+	      <% myshell = Shell.where(:id => taco.shell_id).pluck(:soft) %>
+	      <% if(myshell[0] == true) then shellword = "soft" else shellword = "hard" end %>
+	      <tr class="taco-row" id="<%= dom_id(taco) %>">
+	        <td class="name"><%= taco.name %></td>
+	        <td class="shell"><%= shellword %></td>
+	      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p> reviews </p>
+<% @reviews.each do |r| %>
+<% @this_user = User.find_by(id: r.user_id) %>
+<p><a href="/users/<%= @this_user.id %>"><%= @this_user.username %></a>: <%= r.retrieve_rating_value %>/5 : <%= r.comment %></p>
+<% end %>
