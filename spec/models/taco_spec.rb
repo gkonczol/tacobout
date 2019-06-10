@@ -107,4 +107,23 @@ RSpec.describe Taco, type: :model do
       expect(subject.ingredients).to contain_exactly(cheese, chicken, medium_salsa, hot_salsa)
     end
   end
+
+  context 'rate a taco' do
+    subject = Taco.create
+    subject.setup
+
+    it 'initializes to zero' do
+      expect(subject.rating).to eq(0)
+    end
+
+    it 'will become 5 when rated up 5 once' do
+      subject.rate(5)
+      expect(subject.rating).to eq(5)
+    end
+
+    it 'will average and become 3 when second rating is 1' do
+      subject.rate(1)
+      expect(subject.rating).to eq(3)
+    end
+  end
 end

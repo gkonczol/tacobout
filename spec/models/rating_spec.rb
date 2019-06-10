@@ -1,25 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Rating, type: :model do
-  context 'rating in relation to taco' do
-    subject = Taco.create
-    subject.setup
-
-    it 'initializes to zero' do
-      expect(subject.rating).to eq(0)
-    end
-
-    it 'will become 5 when rated up 5 once' do
-      subject.rate(5)
-      expect(subject.rating).to eq(5)
-    end
-
-    it 'will average and become 3 when second rating is 1' do
-      subject.rate(1)
-      expect(subject.rating).to eq(3)
-    end
-  end
-
   context 'rating in relation to taco shop' do
 	cheesy = Taco.new
 	meaty = Taco.new
