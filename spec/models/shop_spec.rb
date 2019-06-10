@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Shop, type_id: :model do
   context 'New shop with no tacos' do
-    subject = Shop.create(
-                           name: 'Tacoless Shop',
-                           address: '1234 coolio st.',
-                           type_id: 'truck'
-                         )
+    subject = FactoryBot.build(:shop, :tacoless)
     subject.setup
 
     it 'declares itself as a truck' do
@@ -24,10 +20,7 @@ RSpec.describe Shop, type_id: :model do
     crunchy = Taco.create
     seafood = Taco.create
     subject do
-      taco_shop = Shop.create({
-        address: 'establishment ln.',
-        type_id: 'restaurant'
-      })
+      taco_shop = FactoryBot.build(:shop, :manytacos)
       taco_shop.setup
       taco_shop.tap do |ts|
         ts.tacos.push(beefy, crunchy, seafood)
@@ -50,7 +43,7 @@ RSpec.describe Shop, type_id: :model do
     meaty.setup
     cheesy.rate(3.5)
     meaty.rate(4.5)
-    subject = Shop.create()
+    subject = FactoryBot.build(:shop, :default)
     subject.setup([cheesy, meaty])
   
   
@@ -58,12 +51,12 @@ RSpec.describe Shop, type_id: :model do
         expect(subject.rating).to eq(0)
       end
       
-      it 'can be rated, and the first rating entered is the rating of the shop' do
+      it 'shop can be rated, and the first rating entered is the rating of the shop' do
         subject.rate(5)
         expect(subject.rating).to eq(5)
       end
   
-      it 'multiple ratings are averaged to calculate the rating of a shop with more than one rating' do
+      it 'shop with multiple ratings has ratings averaged to calculate the rating of a shop with more than one rating' do
         subject.rate(1)
         expect(subject.rating).to eq(3)
       end
