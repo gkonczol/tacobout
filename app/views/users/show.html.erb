@@ -11,4 +11,13 @@
 email: <%= @user.email %>
 <br />
 <a id='writereviewlink' href='<%= "/users/" + @user.id.to_s + "/write" %>'>write a review!</a>
+
+<p> reviews </p>
+<% @reviews.each do |r| %>
+	<% @this_shop = Shop.find_by(id: r.get_rating.shop_id) %>
+	<% @this_taco = Taco.find_by(id: r.get_rating.taco_id) %>
+	<% if (@this_shop.name != "(none)" || (@this_taco.name != "(none)")) then %>
+	<p><a href="/shops/<%= @this_shop.id %>"><%= @this_shop.name unless (@this_shop.name == "(none)") %></a>:<%= @this_taco.name unless (@this_taco.name == "(none)") %> : "<%= r.retrieve_rating_value %>/5 : <%= r.comment %>"</p>
+	<% end %>
+<% end %>
 </div>
