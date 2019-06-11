@@ -4,7 +4,7 @@ Find steamy hot tacos near you.
 
 # Legacy App Challenge
 
-our team inherited this project as part of the legacy app challenge for CS 381
+our team inherited this project as part of the legacy app challenge for CS 362
 the following is the requirements sheet presented to us by the legacy developers:
 ```
 Current State of Development
