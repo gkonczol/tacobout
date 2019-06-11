@@ -5,6 +5,14 @@
       border: 3px solid #73AD21;
       padding: 10px;
   }
+  table {
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: left;
+  }
 </style>
 <div class="container">
 <h1>All Tacos</h1>
@@ -23,7 +31,7 @@
       <tr class="taco-row" id="<%= dom_id(taco) %>">
         <td class="name"><%= taco.name %></td>
         <td class="shell"><%= shellword %></td>
-        <td class="image_url"><img class="image_img" src="<%= taco.image_url %>"></td>
+        <td class="image_url"><a href="<%= taco.image_url %>" target="_blank"> <img class="image_img" src="<%= taco.image_url %>" style="height:100px"></a></td>
       </tr>
     <% end %>
   </tbody>
